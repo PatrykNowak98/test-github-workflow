@@ -1,0 +1,19 @@
+name: Githubjobs
+on: [push]
+jobs:
+  Display-python-version:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Display python version
+        uses: actions/checkout@v3
+      - run: python --version
+  Run-pylint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install dependencies
+        uses: actions/checkout@v3
+      - run: |
+          python -m pip install --upgrade pip
+          pip install pylint
+      - run: |
+          find . -name '*.py' -exec pylint {} \;
